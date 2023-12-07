@@ -39,20 +39,27 @@ func main() {
 	}
 	defer carSales.Close()
 
-	fmt.Printf("SalesTYPE: %T", carSales)
+	convertCars := ReadCsv(carSales)
 
-	ReadCsv(carSales)
+	carList := NewCars(convertCars)
 
+	fmt.Println("carlist: ", carList)
 }
 
-func ReadCsv(cs *os.File) Cars {
+func NewCars(carArr []CarTypes) Cars {
+	return Cars{
+		cars: carArr,
+	}
+}
+
+func ReadCsv(cs *os.File) []CarTypes {
 	csvReader := csv.NewReader(cs)
 	data, err := csvReader.ReadAll()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	c := Cars{}
+	c := []CarTypes{}
 	for di, d := range data {
 		car := CarTypes{}
 		if len(d) < 16 {
@@ -77,6 +84,7 @@ func ReadCsv(cs *os.File) Cars {
 		car.Latest_Launch = d[14]
 		car.Power_perf_factor = StringToFloat(d[15])
 
+		c = append(c, car)
 		// fmt.Println("data: ", d, " length: ", len(d))
 	}
 
