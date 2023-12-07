@@ -40,8 +40,11 @@ func main() {
 	defer carSales.Close()
 
 	convertCars := ReadCsv(carSales)
+	carList := Cars{}
 
-	carList := NewCars(convertCars)
+	for _, car := range convertCars {
+		carList.InsertHeap(car)
+	}
 	carList.DisplayCarList()
 }
 
@@ -53,7 +56,7 @@ func NewCars(carArr []CarTypes) Cars {
 
 func (c *Cars) DisplayCarList() {
 	for _, car := range c.cars {
-		fmt.Println(car)
+		fmt.Println(car.Price_in_thousands)
 	}
 }
 
