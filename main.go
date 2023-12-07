@@ -42,13 +42,18 @@ func main() {
 	convertCars := ReadCsv(carSales)
 
 	carList := NewCars(convertCars)
-
-	fmt.Println("carlist: ", carList)
+	carList.DisplayCarList()
 }
 
 func NewCars(carArr []CarTypes) Cars {
 	return Cars{
 		cars: carArr,
+	}
+}
+
+func (c *Cars) DisplayCarList() {
+	for _, car := range c.cars {
+		fmt.Println(car)
 	}
 }
 
@@ -85,7 +90,6 @@ func ReadCsv(cs *os.File) []CarTypes {
 		car.Power_perf_factor = StringToFloat(d[15])
 
 		c = append(c, car)
-		// fmt.Println("data: ", d, " length: ", len(d))
 	}
 
 	return c
