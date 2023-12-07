@@ -112,22 +112,3 @@ func StringToInt(s string) uint16 {
 
 	return uint16(ui)
 }
-
-/*
-	Manufacturer        string   Acura,
-	Model               string   Integra,
-	Sales_in_thousands  float64   16.919,
-	__year_resale_value float64   16.36,
-	Vehicle_type        string   Passenger,
-	Price_in_thousands  float64   21.5,
-	Engine_size         float64   1.8,
-	Horsepower          uint   140,
-	Wheelbase           float64   101.2,
-	Width               float64   67.3,
-	Length              float64   172.4,
-	Curb_weight         float64   2.639,
-	Fuel_capacity       float64   13.2,
-	Fuel_efficiency     uint   28,
-	Latest_Launch       string   2/2/2012,
-	Power_perf_factor   float64   58.28014952
-*/
